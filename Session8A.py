@@ -20,25 +20,22 @@ def applyPromoCode(promoCode, amount):
             amountToPay = amount - 0.5 * amount
             print(">> Discount of 50% applied: \u20b9", amountToPay)
         else:
+            print(">> Sorry PromoCode", promoCode, "cannot be Applied !!")
             print(">> Please Use PromoCode 3 to get 50% Off")
 
     else:
         print(">> Sorry No Discounts for \u20b9", amount)
 
 
-
-"""
 amount = int(input(">> Enter Amount"))
 promoCode = int(input(">> Enter Promo Code"))
 
 applyPromoCode(promoCode, amount)
 
-amount = int(input(">> Enter Amount"))
-promoCode = int(input(">> Enter Promo Code"))
 
-applyPromoCode(promoCode, amount)
+
+
 """
-
 choice = "yes"
 
 while choice == "yes":
@@ -48,3 +45,4 @@ while choice == "yes":
     applyPromoCode(promoCode, amount)
 
     choice = input("Would you like to apply promo code again? (yes/no)")
+"""

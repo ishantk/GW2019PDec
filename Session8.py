@@ -22,7 +22,7 @@ f(1)
 f(2)
 
 # Rule : Function must be created/defined before the execution
-#        Function can have any number of inputs none or 1 or multiple
+#        Function can have any number of inputs : none or 1 or multiple
 
 
 
