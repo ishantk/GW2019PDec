@@ -65,5 +65,7 @@ def count(findIn, findWhat, from, to):
 
     ipAddress = "198.10.12.1"
     print(count(ipAddress, ".", 0, len(ipAddress))) : 3
-        
+         
 """
+
+
