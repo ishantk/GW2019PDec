@@ -1,4 +1,4 @@
-def buyBasketball(size):
+def buyBasketball(size, shipping=50):
 
     if size == 5:
         price = 18
@@ -9,14 +9,16 @@ def buyBasketball(size):
     else:
         price = 0
 
-    price = price + 50
+    price = price + shipping
     return price
 
 size = int(input("Enter BasketBall Size you Wish to Buy: "))
-priceToPay = buyBasketball(size)
+# priceToPay = buyBasketball(size)
+shipping = 70
+priceToPay = buyBasketball(size, shipping)
 
-if priceToPay > 50:
-    print(">> You Need to Pay:", buyBasketball(size))
+if priceToPay > shipping:
+    print(">> You Need to Pay:", buyBasketball(size, shipping))
 else:
     print(">> Size Not Available")
 
