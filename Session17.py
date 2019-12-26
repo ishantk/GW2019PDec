@@ -22,6 +22,7 @@ class Dish:
         self.description = description
         self.quantity = q
 
+
     def show(self):
         print("------------------------------------")
         print(self.name, "\t\t", self.quantity)
