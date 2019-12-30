@@ -80,7 +80,7 @@ cRef1.showCustomer()
     Menu Has Categories | 1 to many
     Category Has Dishes | 1 to many
     
-    
+
     Restaurant
     Menu
     Category
