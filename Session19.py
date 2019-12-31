@@ -22,9 +22,36 @@ class Song:
         else:
             print(">> No Previous Song Available")
 
+# Happy New Year
+def addSongToEndOfPlayList(song):
+    pass
+
+def addSongToBeginningOfPlayList(song):
+    pass
+
+def addSongInBetweenPlayList(song1, song2):
+    pass
+
 
 def showPlayList(song):
-    pass
+
+    tempSong = song
+
+    while tempSong.nextSong != song:
+        tempSong.showSong()
+        tempSong = tempSong.nextSong
+
+    tempSong.showSong()
+
+def showReversePlayList(song):
+
+    tempSong = song
+
+    while tempSong.prevSong != song:
+        tempSong.showSong()
+        tempSong = tempSong.prevSong
+
+    tempSong.showSong()
 
 
 s1 = Song("song1.mp3", "john", 5, None, None)
@@ -42,8 +69,12 @@ s3.nextSong = s4
 s1.prevSong = s4
 s4.nextSong = s1
 
-s1.showSong()
-s1.showPrevSong()
-s1.showNextSong()
+# s1.showSong()
+# s1.showPrevSong()
+# s1.showNextSong()
 
 showPlayList(s1)
+
+print()
+
+showReversePlayList(s4)
