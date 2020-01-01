@@ -20,6 +20,9 @@ class WhatsAppGroup:
         WhatsAppGroup.title = title
         self.users = users
 
+        for user in self.users:
+            user.group = self
+
     def showWhatsAppGroup(self):
 
         print("=={}==".format(WhatsAppGroup.title))
@@ -28,8 +31,8 @@ class WhatsAppGroup:
         for user in self.users:
             user.showWhatsAppUser()
 
-    def changeGroupTitle(self):
-        pass
+    def changeGroupTitle(self, title):
+        WhatsAppGroup.title = title
 
 
 
@@ -41,6 +44,11 @@ u3 = WhatsAppUser("Sia", "+91 98977 12388", "Work Hard, Get Luckier !!")
 users = [u1, u2, u3]
 
 wg1 = WhatsAppGroup("Auribises", users)
+wg1.showWhatsAppGroup()
+
+title = input("Enter new Title")
+
+u1.group.changeGroupTitle(title)
 wg1.showWhatsAppGroup()
 
 
