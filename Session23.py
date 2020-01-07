@@ -19,13 +19,19 @@ def generateCombinations(num):
 
     for i in range(0, 2**num):
         combination = []
-        combination.append(i // 32 % 2)
-        combination.append(i // 16 % 2)
-        combination.append(i // 8 % 2)
-        combination.append(i // 4 % 2)
-        combination.append(i // 2 % 2)
-        combination.append(i % 2)
+
+        for j in range(num-1, -1, -1):
+            combination.append(i // 2**j % 2)
+
+        # combination.append(i // 32 % 2)
+        # combination.append(i // 16 % 2)
+        # combination.append(i // 8 % 2)
+        # combination.append(i // 4 % 2)
+        # combination.append(i // 2 % 2)
+        # combination.append(i % 2)
+
         # combination = "{} {} {} {}".format(i//8%2, i//4%2, i//2%2, i%2)
+
         combinations.append(combination)
 
     # combinations is a list of lists
@@ -65,5 +71,3 @@ for comb in combinations:
 
 for i in range(0, len(weightResults)):
     print(weightResults[i], " | ", valueResults[i])
-
-
