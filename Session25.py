@@ -17,7 +17,11 @@
     )
 
     insert into Customer values(null, 'John', '+91 99999 88888', 'john@example.com')
+    update Customer set name = 'kia watson', phone = '+91 90000 98765', email='kia.watson@example.com' where cid = 3
+    delete from Customer where cid = 1
+    select * from Customer
 
+    For Detailed Study on SQL : https://www.w3schools.com/sql/
 
     Python MySQL Connection
     1. Add mysql-connector library to your project
@@ -31,11 +35,13 @@
 
 """
 
-import mysql.connector as ms
+# import mysql.connector as ms
+from Session26 import DBHelper
 
 class Customer:
 
     def __init__(self, name, phone, email):
+        self.cid = 0
         self.name = name
         self.phone = phone
         self.email = email
@@ -52,32 +58,77 @@ class Customer:
 
 # Creating a Connection with DataBase
 # localhost -> 127.0.0.1
-con = ms.connect(user="root", password="", host="127.0.0.1", database="auridb")
+# con = ms.connect(user="root", password="", host="127.0.0.1", database="auridb")
 
 print("==Welcome to Customer Management Solution==")
 print(">> Enter 1 to Add a New Customer")
+print(">> Enter 2 to Update Existing Customer")
+print(">> Enter 3 to Delete Existing Customer")
+print(">> Enter 4 to Get All Existing Customers")
+print(">> Enter 5 to Find Customer by ID")
 
 choice = int(input("Enter Your Choice: "))
 
 if choice == 1:
-    cRef1 = Customer(None, None, None)
+    customer = Customer(None, None, None)
 
-    cRef1.name = input("Enter Customer Name: ")
-    cRef1.phone = input("Enter Customer Phone: ")
-    cRef1.email = input("Enter Customer Email: ")
+    customer.name = input("Enter Customer Name: ")
+    customer.phone = input("Enter Customer Phone: ")
+    customer.email = input("Enter Customer Email: ")
 
-    cRef1.showCustomer()
+    customer.showCustomer()
 
-    saveChoice = input(">> Would you like to save {} ? (yes/no)".format(cRef1.name))
+    # saveChoice = input(">> Would you like to save {} ? (yes/no)".format(cRef1.name))
+    # if saveChoice == "yes":
+    #     # file.write(cRef1.toCSV())
+    #     # file.close()
+    #
+    #     sql = "insert into Customer values(null, '{}', '{}', '{}')".format(cRef1.name, cRef1.phone, cRef1.email)
+    #     cursor = con.cursor()
+    #     cursor.execute(sql)
+    #     con.commit()
+    #
+    #
+    #     print(">> Customer Saved !!")
+
+    saveChoice = input(">> Would you like to save {} ? (yes/no)".format(customer.name))
+
     if saveChoice == "yes":
-        # file.write(cRef1.toCSV())
-        # file.close()
+        db = DBHelper()
+        db.saveCustomer(customer)
 
-        sql = "insert into Customer values(null, '{}', '{}', '{}')".format(cRef1.name, cRef1.phone, cRef1.email)
-        cursor = con.cursor()
-        cursor.execute(sql)
-        con.commit()
+elif choice == 2:
+
+    customer = Customer(None, None, None)
+    customer.cid = int(input("Enter Customer ID: "))
 
 
-        print(">> Customer Saved !!")
+    customer.name = input("Enter Customer Name: ")
+    customer.phone = input("Enter Customer Phone: ")
+    customer.email = input("Enter Customer Email: ")
 
+    customer.showCustomer()
+
+    updateChoice = input(">> Would you like to Update {} ? (yes/no)".format(customer.name))
+
+    if updateChoice == "yes":
+        db = DBHelper()
+        db.updateCustomer(customer)
+
+elif choice == 3:
+    cid = int(input("Enter Customer ID: "))
+
+    deleteChoice = input(">> Would you like to Delete {} ? (yes/no)".format(cid))
+
+    if deleteChoice == "yes":
+        db = DBHelper()
+        db.deleteCustomer(cid)
+
+elif choice == 4:
+    db = DBHelper()
+    db.getAllCustomers()
+
+elif choice == 5:
+    cid = int(input("Enter Customer ID: "))
+    db = DBHelper()
+    db.getCustomerByCID(cid)
