@@ -53,82 +53,88 @@ class Customer:
         return "{},{},{}\n".format(self.name, self.phone, self.email)
 
 
-# a means -> append mode
-# file = open("customers.csv", "a")
+def main():
 
-# Creating a Connection with DataBase
-# localhost -> 127.0.0.1
-# con = ms.connect(user="root", password="", host="127.0.0.1", database="auridb")
+    # a means -> append mode
+    # file = open("customers.csv", "a")
 
-print("==Welcome to Customer Management Solution==")
-print(">> Enter 1 to Add a New Customer")
-print(">> Enter 2 to Update Existing Customer")
-print(">> Enter 3 to Delete Existing Customer")
-print(">> Enter 4 to Get All Existing Customers")
-print(">> Enter 5 to Find Customer by ID")
+    # Creating a Connection with DataBase
+    # localhost -> 127.0.0.1
+    # con = ms.connect(user="root", password="", host="127.0.0.1", database="auridb")
 
-choice = int(input("Enter Your Choice: "))
+    print("==Welcome to Customer Management Solution==")
+    print(">> Enter 1 to Add a New Customer")
+    print(">> Enter 2 to Update Existing Customer")
+    print(">> Enter 3 to Delete Existing Customer")
+    print(">> Enter 4 to Get All Existing Customers")
+    print(">> Enter 5 to Find Customer by ID")
 
-if choice == 1:
-    customer = Customer(None, None, None)
+    choice = int(input("Enter Your Choice: "))
 
-    customer.name = input("Enter Customer Name: ")
-    customer.phone = input("Enter Customer Phone: ")
-    customer.email = input("Enter Customer Email: ")
+    if choice == 1:
+        customer = Customer(None, None, None)
 
-    customer.showCustomer()
+        customer.name = input("Enter Customer Name: ")
+        customer.phone = input("Enter Customer Phone: ")
+        customer.email = input("Enter Customer Email: ")
 
-    # saveChoice = input(">> Would you like to save {} ? (yes/no)".format(cRef1.name))
-    # if saveChoice == "yes":
-    #     # file.write(cRef1.toCSV())
-    #     # file.close()
-    #
-    #     sql = "insert into Customer values(null, '{}', '{}', '{}')".format(cRef1.name, cRef1.phone, cRef1.email)
-    #     cursor = con.cursor()
-    #     cursor.execute(sql)
-    #     con.commit()
-    #
-    #
-    #     print(">> Customer Saved !!")
+        customer.showCustomer()
 
-    saveChoice = input(">> Would you like to save {} ? (yes/no)".format(customer.name))
+        # saveChoice = input(">> Would you like to save {} ? (yes/no)".format(cRef1.name))
+        # if saveChoice == "yes":
+        #     # file.write(cRef1.toCSV())
+        #     # file.close()
+        #
+        #     sql = "insert into Customer values(null, '{}', '{}', '{}')".format(cRef1.name, cRef1.phone, cRef1.email)
+        #     cursor = con.cursor()
+        #     cursor.execute(sql)
+        #     con.commit()
+        #
+        #
+        #     print(">> Customer Saved !!")
 
-    if saveChoice == "yes":
+        saveChoice = input(">> Would you like to save {} ? (yes/no)".format(customer.name))
+
+        if saveChoice == "yes":
+            db = DBHelper()
+            db.saveCustomer(customer)
+
+    elif choice == 2:
+
+        customer = Customer(None, None, None)
+        customer.cid = int(input("Enter Customer ID: "))
+
+
+        customer.name = input("Enter Customer Name: ")
+        customer.phone = input("Enter Customer Phone: ")
+        customer.email = input("Enter Customer Email: ")
+
+        customer.showCustomer()
+
+        updateChoice = input(">> Would you like to Update {} ? (yes/no)".format(customer.name))
+
+        if updateChoice == "yes":
+            db = DBHelper()
+            db.updateCustomer(customer)
+
+    elif choice == 3:
+        cid = int(input("Enter Customer ID: "))
+
+        deleteChoice = input(">> Would you like to Delete {} ? (yes/no)".format(cid))
+
+        if deleteChoice == "yes":
+            db = DBHelper()
+            db.deleteCustomer(cid)
+
+    elif choice == 4:
         db = DBHelper()
-        db.saveCustomer(customer)
+        db.getAllCustomers()
 
-elif choice == 2:
-
-    customer = Customer(None, None, None)
-    customer.cid = int(input("Enter Customer ID: "))
-
-
-    customer.name = input("Enter Customer Name: ")
-    customer.phone = input("Enter Customer Phone: ")
-    customer.email = input("Enter Customer Email: ")
-
-    customer.showCustomer()
-
-    updateChoice = input(">> Would you like to Update {} ? (yes/no)".format(customer.name))
-
-    if updateChoice == "yes":
+    elif choice == 5:
+        cid = int(input("Enter Customer ID: "))
         db = DBHelper()
-        db.updateCustomer(customer)
+        db.getCustomerByCID(cid)
 
-elif choice == 3:
-    cid = int(input("Enter Customer ID: "))
 
-    deleteChoice = input(">> Would you like to Delete {} ? (yes/no)".format(cid))
-
-    if deleteChoice == "yes":
-        db = DBHelper()
-        db.deleteCustomer(cid)
-
-elif choice == 4:
-    db = DBHelper()
-    db.getAllCustomers()
-
-elif choice == 5:
-    cid = int(input("Enter Customer ID: "))
-    db = DBHelper()
-    db.getCustomerByCID(cid)
+if __name__ == "__main__":
+    main()
