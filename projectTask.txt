@@ -1,0 +1,13 @@
+Project Task:
+Create GUI Based app. It must sync data with Google Firebase. It must implement below features
+1. User should be able to add Customer
+2. User should be able to add shopping value made by customer
+3. For Customer 10% of Shopping amount should be saved as loyalty points
+4. User should be able to redeem the points for customer
+5. User should be able to view the list of customers (sorted)
+6. User should be able to update details of customer
+7. User should mark the customer as premium or regular
+8. Premium customer shall get additional 5% points
+
+Exploration : GUI Development
+			  Flask
